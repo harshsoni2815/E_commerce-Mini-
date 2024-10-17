@@ -1,0 +1,106 @@
+/* src/components/Auth.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    color: white;
+    cursor: pointer;
+}
+
+.navbar li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.navbar li a:hover {
+    background-color: #575757;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+.logbtn {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.logbtn button {
+    background-color: transparent;
+    color: #337ab7;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.logbtn button:hover {
+    color: #23527c;
+}
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login div{
+    padding-right: 1.5rem;
+}

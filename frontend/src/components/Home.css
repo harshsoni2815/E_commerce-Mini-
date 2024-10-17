@@ -1,0 +1,71 @@
+/* src/components/Home.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    background-color: #333;
+    padding: 10px;
+}
+
+.navbar li {
+    list-style: none;
+    margin-right: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px; /* Adjust width as needed */
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+/* src/components/card.css */
+
+.product-detail {
+    max-width: 600px; /* Keep the card width as is */
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+.product-detail img {
+    width: 150px; /* Set the width to a smaller size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 4px; /* Optional: Slightly round the image corners */
+}
+
+.product-detail h3 {
+    font-size: 24px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-detail p {
+    font-size: 18px;
+    color: #555;
+}
