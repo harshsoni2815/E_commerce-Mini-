@@ -5,10 +5,10 @@ const LogoutButton = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Remove the token from local storage or wherever it is stored
+       
         localStorage.removeItem('token');
-        // Redirect to login or home page
-        navigate('/login'); // Adjust to your routing setup
+       
+        navigate('/login'); 
     };
 
     return <button onClick={handleLogout}>Logout</button>;

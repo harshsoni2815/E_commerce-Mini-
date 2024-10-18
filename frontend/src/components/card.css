@@ -189,17 +189,17 @@
     align-items: center;
 }
 .comment-card {
-    background-color: #fff; /* White background */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 15px; /* Padding around the card */
-    margin: 10px 0; /* Space between comments */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    transition: transform 0.3s; /* Smooth hover effect */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    padding: 15px;
+    margin: 10px 0; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s; 
 }
 
 .comment-card:hover {
-    transform: scale(1.02); /* Slightly increase size on hover */
+    transform: scale(1.02); 
 }
 .btn-container{
     display: flex;
@@ -213,8 +213,8 @@
 
 .login {
   background-image: url("https://img.pikbest.com/wp/202346/e-commerce-website-in-india-3d-rendering-for-social-media-and-websites_9724472.jpg!bw700");
-  background-size: cover; /* Change to cover to fill the entire element */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-position: center; /* Center the image within the element */
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center; 
   height: 100vh;
 }

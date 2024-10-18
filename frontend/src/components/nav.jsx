@@ -6,21 +6,21 @@ const Nav = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  // Check if the user is logged in
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setIsAuthenticated(true); // User is logged in
+      setIsAuthenticated(true); 
     } else {
-      setIsAuthenticated(false); // User is not logged in
+      setIsAuthenticated(false); 
     }
   }, []);
 
-  // Handle user logout
+
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Remove the token from local storage
-    setIsAuthenticated(false); // Update the authentication state
-    navigate('/'); // Redirect to login page
+    localStorage.removeItem('token'); 
+    setIsAuthenticated(false);
+    navigate('/');
   };
 
   return (
@@ -28,16 +28,16 @@ const Nav = () => {
       <div className='nav2'>
         <nav>
           <ul className="navbar">
-            {!isAuthenticated && <li><Link to="/">Login/sign up</Link></li>} {/* Show login if not authenticated */}
+            {!isAuthenticated && <li><Link to="/">Login/sign up</Link></li>} 
             {isAuthenticated && (
               <li>
-                <button onClick={handleLogout} className='logout-button'>Logout</button> {/* Show logout if authenticated */}
+                <button onClick={handleLogout} className='logout-button'>Logout</button> 
               </li>
             )}
             <li><Link to="/home">Home</Link></li>
             
             <li><Link to="/order">My Orders</Link></li>
-            <li><Link to="/cart">My Cart</Link></li> {/* Add this link to the cart page */}
+            <li><Link to="/cart">My Cart</Link></li> 
           </ul>
         </nav>
       </div>

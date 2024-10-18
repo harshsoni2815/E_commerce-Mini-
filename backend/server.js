@@ -11,10 +11,10 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json()); // Only if you are using body-parser
+app.use(bodyParser.json());
 
 // Routes
-app.use('/api/auth', authRoutes); // Adjust based on your routes
+app.use('/api/auth', authRoutes); 
 
 app.use('/api/home',Homeroutes);
 
@@ -24,7 +24,7 @@ app.use('/api/order',order)
 
 app.use('/api/cart',cartroute);
 
-// Start server
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

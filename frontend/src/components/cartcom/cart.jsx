@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 import Nav from "../nav";
-import "./cart.css"; // You can create this CSS file to style your cart
+import "./cart.css";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchCartItems = async () => {
-      const token = localStorage.getItem("token"); // Get JWT token from local storage
+      const token = localStorage.getItem("token"); 
       if (!token) {
-        navigate("/login"); // Redirect to login if not authenticated
+        navigate("/login");
         return;
       }
 
@@ -29,7 +29,7 @@ const Cart = () => {
         }
 
         const data = await response.json();
-        setCartItems(data.data); // Set cart items to state
+        setCartItems(data.data); 
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
@@ -51,7 +51,7 @@ const Cart = () => {
       });
 
       if (response.ok) {
-        setCartItems(cartItems.filter((item) => item.id !== itemId)); // Update the cart items
+        setCartItems(cartItems.filter((item) => item.id !== itemId)); 
         alert("Item removed from cart!");
       } else {
         alert("Failed to remove item from cart.");

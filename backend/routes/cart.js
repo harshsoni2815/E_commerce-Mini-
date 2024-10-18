@@ -1,7 +1,7 @@
 const express = require('express');
 const authenticateJWT = require('../middleware/authentication');
 const router = express.Router();
-const { connection } = require('../database/db'); // MySQL connection
+const { connection } = require('../database/db'); 
 
 const query = (sql, params) => {
     return new Promise((resolve, reject) => {
@@ -11,13 +11,13 @@ const query = (sql, params) => {
         });
     });
 };
-// POST route to add item to cart
+
 router.post('/', authenticateJWT, async (req, res) => {
-  const { productId } = req.body; // Expecting productId in the request body
-  const userId = req.user.id; // Assuming you set user ID in the token payload
+  const { productId } = req.body; 
+  const userId = req.user.id;
 
   try {
-    // Insert into the cart table
+   
     const result = await query(
       'INSERT INTO cart (userid, productid) VALUES (?, ?)',
       [userId, productId]
@@ -34,7 +34,7 @@ router.post('/', authenticateJWT, async (req, res) => {
 });
 
 router.get('/',authenticateJWT,async(req,res)=>{
-    const userId = req.user.id; // Get the user ID from the JWT token
+    const userId = req.user.id; 
 
   try {
     const Q = `
@@ -57,8 +57,8 @@ router.get('/',authenticateJWT,async(req,res)=>{
 })
 
 router.delete('/:id', authenticateJWT, async (req, res) => {
-    const cartItemId = req.params.id; // Get the cart item ID from the request parameters
-    const userId = req.user.id; // Assuming you set user ID in the token payload
+    const cartItemId = req.params.id;
+    const userId = req.user.id; 
 
     try {
         const result = await query(

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./order.css"; // Import your CSS for styling
-import Nav from "../nav"; // Import your navigation component
+import "./order.css"; 
+import Nav from "../nav"; 
 
 const OrderPage = () => {
-  const { id } = useParams(); // Get the product ID from the URL
-  const navigate = useNavigate(); // For navigation
+  const { id } = useParams(); 
+  const navigate = useNavigate(); 
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [address, setAddress] = useState("");
-  const [orderSuccess, setOrderSuccess] = useState(false); // For order success alert
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // State for authentication status
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); 
 
   useEffect(() => {
     console.log("Product ID from URL:", id);
@@ -19,14 +19,14 @@ const OrderPage = () => {
     if (token) {
       setIsAuthenticated(true);
     } else {
-      navigate("/login"); // Redirect to login if not authenticated
+      navigate("/login"); 
     }
 
     const fetchProductDetails = async () => {
       try {
         const response = await fetch(`http://localhost:3000/api/home/${id}`);
         const data = await response.json();
-        setProduct(data.data[0]); // Assuming 'data' contains product details
+        setProduct(data.data[0]);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching product details:", error);
@@ -46,7 +46,7 @@ const OrderPage = () => {
     }
 
     const orderData = {
-      userId: 1, // Replace with real user ID
+      userId: 1,
       productId: id,
       address,
     };
@@ -56,7 +56,7 @@ const OrderPage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`, // Include JWT token in the headers
+          "Authorization": `Bearer ${localStorage.getItem("token")}`, 
         },
         body: JSON.stringify(orderData),
       });
@@ -64,7 +64,7 @@ const OrderPage = () => {
       if (response.ok) {
         setOrderSuccess(true);
         setTimeout(() => {
-          navigate(`/home`); // Redirect to orders page after successful order
+          navigate(`/home`); 
           alert("order succecfully placed");
         }, 2000);
       } else {

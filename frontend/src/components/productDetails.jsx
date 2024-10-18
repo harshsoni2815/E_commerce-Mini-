@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useParams, useNavigate } from "react-router-dom"; 
 import "./card.css";
 import Nav from "./nav";
 
 const ProductDetails = () => {
-  const { id } = useParams(); // Get the product ID from the URL
-  const navigate = useNavigate(); // For navigation
+  const { id } = useParams();
+  const navigate = useNavigate(); 
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [comments, setComments] = useState([]); // State for comments
-  const [commentText, setCommentText] = useState(""); // State for new comment
-  const [rating, setRating] = useState(1); // State for rating
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // State for authentication status
+  const [comments, setComments] = useState([]); 
+  const [commentText, setCommentText] = useState("");
+  const [rating, setRating] = useState(1);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); 
 
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Get JWT token from local storage
+    const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
     }
@@ -24,7 +24,7 @@ const ProductDetails = () => {
       try {
         const response = await fetch(`http://localhost:3000/api/home/${id}`);
         const data = await response.json();
-        setProduct(data.data[0]); // Assuming 'data' contains product details
+        setProduct(data.data[0]); 
         setLoading(false);
       } catch (error) {
         console.error("Error fetching product details:", error);
@@ -36,7 +36,7 @@ const ProductDetails = () => {
       try {
         const response = await fetch(`http://localhost:3000/api/comments/${id}`);
         const data = await response.json();
-        setComments(data.data); // Assuming data contains the comments
+        setComments(data.data); 
       } catch (error) {
         console.error("Error fetching comments:", error);
       }
@@ -68,9 +68,9 @@ const ProductDetails = () => {
 
     if (response.ok) {
       const addedComment = await response.json();
-      setComments([...comments, addedComment]); // Update comments
-      setCommentText(""); // Clear input
-      setRating(1); // Reset rating
+      setComments([...comments, addedComment]); 
+      setCommentText("");
+      setRating(1); 
     } else {
       alert("Failed to add comment");
     }
@@ -78,7 +78,7 @@ const ProductDetails = () => {
 
  const handleAddToCart = async () => {
     if (!isAuthenticated) {
-      navigate("/login"); // Redirect to login if not authenticated
+      navigate("/login");
       return;
     }
 
@@ -87,14 +87,14 @@ const ProductDetails = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`, // Only send the token
+          "Authorization": `Bearer ${localStorage.getItem("token")}`, 
         },
-        body: JSON.stringify({ productId: id }), // Only send the product ID
+        body: JSON.stringify({ productId: id }), 
       });
 
       if (response.ok) {
-        const result = await response.json(); // Get the response from the server
-        alert("Product added to cart!"); // Notify user
+        const result = await response.json(); 
+        alert("Product added to cart!"); 
       } else {
         alert("Failed to add product to cart.");
       }
@@ -106,10 +106,10 @@ const ProductDetails = () => {
 
   const handleBuyNow = () => {
     if (!isAuthenticated) {
-      navigate("/"); // Redirect to login if not authenticated
+      navigate("/"); 
       return;
     }
-    navigate(`/checkout/${id}`); // Navigate to checkout page
+    navigate(`/checkout/${id}`); 
   };
 
   if (loading) {
@@ -177,7 +177,7 @@ const ProductDetails = () => {
           )}
         </div>
 
-        {/* Add buttons for Buy Now and Add to Cart */}
+       
         
       </div>
     </>

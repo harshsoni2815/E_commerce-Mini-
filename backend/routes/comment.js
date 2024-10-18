@@ -32,9 +32,9 @@ router.get("/:id",async(req,res)=>{
 });
 
 router.post('/comment', authenticateJWT, async (req, res) => {
-  const { postId, commentText, rating } = req.body; // Include rating if needed
+  const { postId, commentText, rating } = req.body; 
   console.log(req.body)
-  // Get user ID from the authenticated user
+  
 
   if (!postId || !commentText) {
     return res.status(400).json({ message: 'Post ID and comment text are required.' });
@@ -42,7 +42,7 @@ router.post('/comment', authenticateJWT, async (req, res) => {
 
   try {
     await query('INSERT INTO comments (product_id , comment_text, rating) VALUES (?, ?, ?)', 
-                [postId,  commentText, rating]); // Include rating if storing it
+                [postId,  commentText, rating]); 
     res.status(201).json({ message: 'Comment added successfully.' });
   } catch (err) {
     console.error('Error adding comment:', err);

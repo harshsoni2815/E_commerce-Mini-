@@ -1,8 +1,8 @@
-// src/components/Home.jsx
+
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../components/Home.css'; // Optional: For custom styles
+import '../components/Home.css'; 
 import Nav from './nav';
 import '../../css.css'
 
@@ -10,7 +10,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // Fetch products from your API
+       
         const fetchProducts = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/home');
@@ -35,7 +35,7 @@ const Home = () => {
                         <h3>{product.name}</h3>
                         <h4>left:{product.quantity}</h4>
                         <p>Price: ${product.price}</p>
-                        {/* Button to view more details about the product */}
+                       
                         <Link to={`/product/${product.id}`}>
                             <button>View Details</button>
                         </Link>

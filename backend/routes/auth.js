@@ -1,11 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { connection } = require('../database/db'); // MySQL connection
-require('dotenv').config(); // Load environment variables
+const { connection } = require('../database/db'); 
+require('dotenv').config(); 
 const router = express.Router();
 
-// Utility function to execute MySQL queries
+
 const query = (sql, params) => {
     return new Promise((resolve, reject) => {
         connection.query(sql, params, (err, results) => {
@@ -15,7 +15,7 @@ const query = (sql, params) => {
     });
 };
 
-// Middleware to authenticate JWT
+
 const authenticateJWT = (req, res, next) => {
     const token = req.headers['authorization'];
     if (token) {
@@ -31,7 +31,7 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-// Signup Route
+
 router.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -58,7 +58,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-// Login Route
+
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -85,10 +85,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Example of a protected route
+
 router.get('/protected-route', authenticateJWT, (req, res) => {
     res.json({ message: 'This is a protected route', user: req.user });
 });
 
-// Export the router
+
 module.exports = router;

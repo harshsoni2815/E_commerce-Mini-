@@ -11,17 +11,17 @@ const Auth = () => {
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // Error state
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(""); 
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Redirect if token exists and is valid
+  
     const token = localStorage.getItem("token");
     if (token) {
-      // Optionally, you can decode the token to check for expiration here
-      navigate("/home"); // Redirect to home if logged in
+      
+      navigate("/home");
     }
   }, [navigate]);
 
@@ -32,10 +32,10 @@ const Auth = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true
-    setError(""); // Reset any previous error message
+    setLoading(true); 
+    setError(""); 
 
-    const { username, ...data } = formData; // Extract username for signup
+    const { username, ...data } = formData; 
     const url = isLogin
       ? "http://localhost:3000/api/auth/login"
       : "http://localhost:3000/api/auth/signup";
@@ -53,7 +53,7 @@ const Auth = () => {
       const responseData = await response.json();
 
       if (response.ok) {
-        // Save JWT token in local storage
+      
         if (isLogin) {
           localStorage.setItem("token", responseData.token);
           alert("Login successful!");
@@ -70,7 +70,7 @@ const Auth = () => {
       console.error("Error:", error);
       setError("An error occurred. Please try again later.");
     } finally {
-      setLoading(false); // Set loading to false after the request is completed
+      setLoading(false);
     }
   };
 
@@ -80,7 +80,7 @@ const Auth = () => {
       <div className="login">
         <div>
           <h2>{isLogin ? "Login" : "Signup"}</h2>
-          {error && <p className="error">{error}</p>} {/* Show error message */}
+          {error && <p className="error">{error}</p>}
           <form onSubmit={handleSubmit}>
             {!isLogin && (
               <div>
