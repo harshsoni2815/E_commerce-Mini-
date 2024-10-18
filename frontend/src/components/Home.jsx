@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../components/Home.css'; // Optional: For custom styles
 import Nav from './nav';
-
+import '../../css.css'
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -25,7 +25,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
+        <div className='container'>
             <Nav></Nav>
             <h2>Product List</h2>
             <div className="product-list">

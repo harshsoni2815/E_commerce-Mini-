@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
-import { Link } from "react-router-dom";
 import Nav from "./nav";
+import '../../css.css'
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,8 +11,19 @@ const Auth = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(""); // Error state
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect if token exists and is valid
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Optionally, you can decode the token to check for expiration here
+      navigate("/home"); // Redirect to home if logged in
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,11 +32,13 @@ const Auth = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true
+    setError(""); // Reset any previous error message
 
     const { username, ...data } = formData; // Extract username for signup
     const url = isLogin
       ? "http://localhost:3000/api/auth/login"
-      : "http://localhost:3000/api/auth/signup"; // Use proxy
+      : "http://localhost:3000/api/auth/signup";
 
     try {
       const response = await fetch(url, {
@@ -33,38 +46,41 @@ const Auth = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(
-          isLogin ? { email: data.email, password: data.password } : data
-        ),
+        body: JSON.stringify(isLogin ? { email: formData.email, password: formData.password } : formData),
+
       });
 
       const responseData = await response.json();
 
       if (response.ok) {
-        // Save JWT token in local storage (or handle it as needed)
+        // Save JWT token in local storage
         if (isLogin) {
           localStorage.setItem("token", responseData.token);
           alert("Login successful!");
-          navigate("/home"); // Navigate to home page
+          navigate("/home");
         } else {
           alert("Signup successful!");
-          setIsLogin(true); // Switch to login view after signup
+          setIsLogin(true);
+          navigate("/home");
         }
       } else {
-        alert(responseData.message); // Show error message
+        setError(responseData.message || "Something went wrong.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred. Please try again later.");
+      setError("An error occurred. Please try again later.");
+    } finally {
+      setLoading(false); // Set loading to false after the request is completed
     }
   };
 
   return (
     <>
-      <Nav> </Nav>
+      <Nav />
       <div className="login">
         <div>
           <h2>{isLogin ? "Login" : "Signup"}</h2>
+          {error && <p className="error">{error}</p>} {/* Show error message */}
           <form onSubmit={handleSubmit}>
             {!isLogin && (
               <div>
@@ -98,7 +114,9 @@ const Auth = () => {
                 required
               />
             </div>
-            <button type="submit">{isLogin ? "Login" : "Signup"}</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Loading..." : isLogin ? "Login" : "Signup"}
+            </button>
           </form>
           <div className="logbtn">
             <button onClick={() => setIsLogin(!isLogin)}>

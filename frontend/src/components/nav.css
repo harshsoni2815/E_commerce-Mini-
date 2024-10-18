@@ -4,4 +4,31 @@
 }
 .nav2{
     display: flex;
+
 }
+/* General button styling */
+.logout-button {
+    background-color: transparent; /* No background, inherits parent */
+    color: inherit; /* Inherit the text color from the parent */
+    font: inherit; /* Inherit font family, size, etc. from the parent */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Change cursor to pointer for button effect */
+    /*  */ /* Add some padding for better spacing */
+    border-radius: 5px; /* Optional: Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  /* Hover state */
+  .logout-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light background on hover */
+    color: inherit; /* Keep color the same */
+  }
+  
+  /* Optional: For mobile or smaller screens, adjust padding */
+  @media (max-width: 768px) {
+    .logout-button {
+    /*   padding: 8px 12px;  *//* Slightly smaller padding on small screens */
+    }
+  }
+ 
+  

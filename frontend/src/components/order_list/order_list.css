@@ -1,0 +1,52 @@
+/* Container for the orders list */
+.order-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+    padding: 20px;
+  }
+  
+  /* Each order card */
+  .order-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Card hover effect */
+  .order-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Order image styling */
+  .order-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  /* Order details */
+  .order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* Order details text */
+  .order-details h3 {
+    font-size: 1.2em;
+    margin: 0;
+  }
+  
+  .order-details p {
+    margin: 5px 0;
+    color: #333;
+  }
+  

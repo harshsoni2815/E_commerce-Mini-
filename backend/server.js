@@ -4,6 +4,8 @@ const cors = require('cors'); // Only if you are using CORS
 const authRoutes = require('./routes/auth'); // Adjust the path as necessary
 const Homeroutes = require('./routes/Homeroutes');
 const commentrout = require('./routes/comment');
+const order = require('./routes/order');
+const cartroute =require('./routes/cart');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -17,6 +19,10 @@ app.use('/api/auth', authRoutes); // Adjust based on your routes
 app.use('/api/home',Homeroutes);
 
 app.use('/api/comments',commentrout);
+
+app.use('/api/order',order)
+
+app.use('/api/cart',cartroute);
 
 // Start server
 app.listen(PORT, () => {

@@ -12,7 +12,7 @@ const query = (sql, params) => {
 };
 
 router.get("/",async(req,res)=>{
-  const data= await query("select * from products where  quantity >0");
+  const data= await query("select * from products ");
   try{
 
       res.status(200).json({

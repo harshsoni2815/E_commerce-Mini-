@@ -1,13 +1,16 @@
-/* src/components/Home.css */
-
+/* General body styling */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .navbar {
     display: flex;
     background-color: #333;
     padding: 10px;
+    justify-content: flex-start;
 }
 
 .navbar li {
@@ -20,52 +23,83 @@ body {
     text-decoration: none;
 }
 
+/* Container for product list */
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Create flexible columns */
+    gap: 20px; /* Spacing between product cards */
     margin: 20px;
+    background-color: #3a3939f6;
+}
+.container{
+    background-color: #3a3939f6;
 }
 
+/* Individual product card styling */
 .product-card {
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    width: 200px; /* Adjust width as needed */
+    padding: 15px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+h2{
+    color: rgba(255, 255, 255, 0.801);
+}
+/* Hover effect for product card */
+.product-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly bigger shadow */
 }
 
 .product-card img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
-}
-/* src/components/card.css */
-
-.product-detail {
-    max-width: 600px; /* Keep the card width as is */
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    text-align: center;
+    margin-bottom: 15px;
 }
 
-.product-detail img {
-    width: 150px; /* Set the width to a smaller size */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 4px; /* Optional: Slightly round the image corners */
-}
-
-.product-detail h3 {
-    font-size: 24px;
-    color: #333;
-    margin: 10px 0;
-}
-
-.product-detail p {
+.product-card h3 {
     font-size: 18px;
-    color: #555;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-card h4 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive design for small screens */
+@media (max-width: 768px) {
+    .product-card {
+        width: 100%; /* Ensure cards take full width on smaller screens */
+    }
 }

@@ -201,3 +201,20 @@
 .comment-card:hover {
     transform: scale(1.02); /* Slightly increase size on hover */
 }
+.btn-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+    
+}
+.btn-container button{
+    width: 15rem;
+}
+
+.login {
+  background-image: url("https://img.pikbest.com/wp/202346/e-commerce-website-in-india-3d-rendering-for-social-media-and-websites_9724472.jpg!bw700");
+  background-size: cover; /* Change to cover to fill the entire element */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: center; /* Center the image within the element */
+  height: 100vh;
+}

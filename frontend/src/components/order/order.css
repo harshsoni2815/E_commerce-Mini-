@@ -1,0 +1,79 @@
+.order-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .order-detail-card {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #f9f9f9;
+  }
+  
+  .product-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .small-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .order-form {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f1f1f1;
+  }
+  
+  .order-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .order-form label {
+    margin-bottom: 5px;
+  }
+  
+  .order-form textarea {
+    width: 100%;
+    min-height: 80px;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .order-form button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .order-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .alert-success {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+  }
+  

@@ -1,11 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { connection } = require('../database/db'); // Assuming you have a db.js file for MySQL connection
+const { connection } = require('../database/db'); // MySQL connection
+require('dotenv').config(); // Load environment variables
 const router = express.Router();
-
-// Secret key for JWT
-const JWT_SECRET = 'your_jwt_secret_key'; 
 
 // Utility function to execute MySQL queries
 const query = (sql, params) => {
@@ -17,10 +15,28 @@ const query = (sql, params) => {
     });
 };
 
-// Signup Route
+// Middleware to authenticate JWT
+const authenticateJWT = (req, res, next) => {
+    const token = req.headers['authorization'];
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
 // Signup Route
 router.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
+
+    console.log(req.body);
+    console.log(req.body.username);
 
     if (!username || !email || !password) {
         return res.status(400).json({ message: 'All fields are required' });
@@ -34,7 +50,7 @@ router.post('/signup', async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
         await query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword]);
-        
+
         res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
         console.error('Error in signup:', err);
@@ -45,7 +61,6 @@ router.post('/signup', async (req, res) => {
 // Login Route
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    
 
     if (!email || !password) {
         return res.status(400).json({ message: 'All fields are required' });
@@ -62,7 +77,7 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: user[0].id, email: user[0].email }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user[0].id, email: user[0].email }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.status(200).json({ message: 'Login successful', token });
     } catch (err) {
         console.error('Error in login:', err);
@@ -70,6 +85,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Example of a protected route
+router.get('/protected-route', authenticateJWT, (req, res) => {
+    res.json({ message: 'This is a protected route', user: req.user });
+});
 
 // Export the router
 module.exports = router;
